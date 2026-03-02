@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dpo-rewrite"
-version = "0.1.0"
+version = "0.1.1"
 description = "DPO graph rewriting core for graph databases."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -27,9 +27,7 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://example.com/dpo-rewrite"
-Repository = "https://example.com/dpo-rewrite"
-Issues = "https://example.com/dpo-rewrite/issues"
+Repository = "https://github.com/Finradon/dpo-rewrite"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
