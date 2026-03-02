@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dpo-rewrite.invalid/schema/dpo-rule-1.0.json",
+  "title": "DPO Rewrite Rule",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string"
+    },
+    "rule_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "metadata": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "nac": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/graph"
+      },
+      "default": []
+    },
+    "left": {
+      "$ref": "#/$defs/graph"
+    },
+    "interface": {
+      "$ref": "#/$defs/graph"
+    },
+    "right": {
+      "$ref": "#/$defs/graph"
+    }
+  },
+  "required": ["left", "interface", "right"],
+  "$defs": {
+    "graph": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nodes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/node"
+          },
+          "default": []
+        },
+        "edges": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/edge"
+          },
+          "default": []
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "label": {
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        },
+        "props": {
+          "$ref": "#/$defs/props"
+        }
+      },
+      "required": ["id"]
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "target": {
+          "type": "string",
+          "minLength": 1
+        },
+        "key": {
+          "type": ["string", "number"]
+        },
+        "type": {
+          "type": "string"
+        },
+        "props": {
+          "$ref": "#/$defs/props"
+        }
+      },
+      "required": ["source", "target"]
+    },
+    "props": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/jsonValue"
+      }
+    },
+    "jsonValue": {
+      "type": ["string", "number", "boolean", "null", "array", "object"],
+      "items": {
+        "$ref": "#/$defs/jsonValue"
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/jsonValue"
+      }
+    }
+  }
+}
