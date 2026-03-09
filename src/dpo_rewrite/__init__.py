@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import Any, Mapping
 
+from .apply import Match, RewriteResult, apply_rule
 from .cypher import CypherQuery, RuleSerializationError, rule_to_cypher
 from .rules import DpoRule
 from .schema import (
@@ -15,7 +16,10 @@ from .schema import (
 __all__ = [
     "CypherQuery",
     "DpoRule",
+    "Match",
     "RuleSerializationError",
+    "RewriteResult",
+    "apply_rule",
     "iter_errors",
     "load_rule",
     "rule_to_cypher",
